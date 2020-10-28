@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+  <body>
+    <h2>Exercise 1</h1>
+  <div id="root">
+    <input type="text" id="input" v-model="message">
+    <p>The value of the input is {{ message }}</p>
+  </div>
+
+  <h2>Exercise 2</h2>
+  <div id="root-2">
+    <li v-for="name in names">{{ name }}</li>
+
+    <h3>Exercise 3</h3>
+      <input type="text" id="input" v-model="newName">
+      <button @click="addName" :title="title">Add name</button>
+    <button :disabled ="isDisabled" @click="enabled">Exercise 4: binding</button>
+
+    <h3>Exercise 4 : computed</h3>
+    <ul>
+      <li v-for="task in tasks">{{task.description}}
+      <button @click="incompleteTasks">complete</button>
+      </li>
+    </ul>
+  </div>
+  <div id="root-3">
+
+    <h3>Exercise 4: components</h3>
+    <task-list></task-list>
+
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="main.js"></script>
+    <script>
+      var app = new Vue({
+        el:'#root',
+        data: {
+          message: 'Hello World'
+        }
+      })
+
+      var app_1 = new Vue({
+        el:'#root-2',
+        data: {
+          newName: 'ej:John',
+          names: ['Jane', 'Joe'],
+          title: "New title",
+          isDisabled: false,
+          tasks: [{description: 'got to the store', completed: true},
+                  {description: 'go to the gym', completed: false}]
+          },
+
+        computed: {
+        },
+
+        methods: {
+          addName() {
+            this.names.push(this.newName);
+            this.newName = '';
+          },
+          enabled () {
+            this.isDisabled = true
+          },
+          incompleteTasks() {
+            this.tasks.completed = false;
+          }
+        }
+
+      });
+
+
+    </script>
+  </body>
+</html>
